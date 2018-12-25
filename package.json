@@ -1,25 +1,61 @@
 {
-  "name": "test-nodejs-react",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-scripts": "2.1.2"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+	"name": "test-nodejs-react",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"body-parser": "^1.18.3",
+		"express": "^4.16.4",
+		"mongoose": "^5.4.0",
+		"mongoose-unique-validator": "^2.0.2",
+		"nodemon": "^1.18.9",
+		"react": "^16.7.0",
+		"react-dom": "^16.7.0",
+		"react-redux": "^6.0.0",
+		"react-router-dom": "^4.3.1",
+		"react-scripts": "2.1.2",
+		"redux": "^4.0.1",
+		"redux-thunk": "^2.3.0"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject",
+		"eslint": "./node_modules/.bin/eslint ./src/",
+		"eslint:watch": "watch ./node_modules/.bin/eslint ./src/",
+		"precommit": "lint-staged",
+		"server": "node_modules/nodemon/bin/nodemon.js server/server && npm start"
+	},
+	"lint-staged": {
+		"*.{js,jsx}": [
+			"pretty-quick --staged",
+			"eslint src/ --fix",
+			"git add"
+		]
+	},
+	"eslintConfig": {
+		"extends": "react-app"
+	},
+	"browserslist": [
+		">0.2%",
+		"not dead",
+		"not ie <= 11",
+		"not op_mini all"
+	],
+	"devDependencies": {
+		"enzyme": "^3.8.0",
+		"enzyme-adapter-react-16": "^1.7.1",
+		"eslint": "^5.11.0",
+		"eslint-config-airbnb": "^17.1.0",
+		"eslint-config-prettier": "^3.3.0",
+		"eslint-plugin-import": "^2.14.0",
+		"eslint-plugin-jsx-a11y": "^6.1.2",
+		"eslint-plugin-prettier": "^3.0.0",
+		"eslint-plugin-react": "^7.11.1",
+		"husky": "^1.2.1",
+		"lint-staged": "^8.1.0",
+		"prettier": "^1.15.3",
+		"pretty-quick": "^1.8.0"
+	},
+	"proxy": "http://localhost:3001"
 }
