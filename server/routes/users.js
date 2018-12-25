@@ -14,7 +14,7 @@ app.post('/user', (req, res) => {
 		password: bcrypt.hashSync(data.password, 10),
 	});
 
-	user.save((err, userBD) => {
+	user.save((err, userDB) => {
 		if (err) {
 			return res.status(400).json({
 				ok: false,
@@ -24,7 +24,7 @@ app.post('/user', (req, res) => {
 
 		return res.status(200).json({
 			ok: true,
-			userBD,
+			userDB,
 		});
 	});
 });
@@ -32,7 +32,7 @@ app.post('/user', (req, res) => {
 app.get('/user/:id', (req, res) => {
 	const { id } = req.params;
 
-	User.findById(id).exec((err, usuarioBD) => {
+	User.findById(id).exec((err, userDB) => {
 		if (err) {
 			res.status(400).json({
 				ok: false,
@@ -42,7 +42,7 @@ app.get('/user/:id', (req, res) => {
 
 		res.status(200).json({
 			ok: true,
-			usuarioBD,
+			userDB,
 		});
 	});
 });
@@ -51,7 +51,7 @@ app.put('/user/:id', (req, res) => {
 	const { id } = req.params;
 	const body = _.pick(req.body, ['name', 'lastname', 'email', 'img']);
 
-	User.findByIdAndUpdate(id, body, { new: true }, (err, userBD) => {
+	User.findByIdAndUpdate(id, body, { new: true }, (err, userDB) => {
 		if (err) {
 			return res.status(400).json({
 				ok: false,
@@ -61,7 +61,7 @@ app.put('/user/:id', (req, res) => {
 
 		return res.status(200).json({
 			ok: true,
-			userBD,
+			userDB,
 		});
 	});
 });
@@ -69,7 +69,7 @@ app.put('/user/:id', (req, res) => {
 app.delete('/user/:id', (req, res) => {
 	const { id } = req.params;
 
-	User.findByIdAndRemove(id, (err, userBD) => {
+	User.findByIdAndRemove(id, (err, userDB) => {
 		if (err) {
 			return res.status(400).json({
 				ok: false,
@@ -77,7 +77,7 @@ app.delete('/user/:id', (req, res) => {
 			});
 		}
 
-		if (!userBD) {
+		if (!userDB) {
 			return res.status(400).json({
 				ok: false,
 				message: 'usuario no encontrado',
