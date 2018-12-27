@@ -1,6 +1,7 @@
 const express = require('express');
 const _ = require('underscore');
 const Game = require('../models/game');
+const verifyWinner = require('../commonFunction/move');
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.get('/game/:id', (req, res) => {
 app.put('/game/:id', (req, res) => {
 	const { id } = req.params;
 	const body = _.pick(req.body, ['turn', 'move']);
+	let winner = false;
 
 	const objectUpdate =		Number(body.turn) === 1
 		? { $addToSet: { playerMovement1: body.move }, turn: 2 }
@@ -52,27 +54,36 @@ app.put('/game/:id', (req, res) => {
 			gameDB.playerMovement1.includes(Number(body.move))
 			|| gameDB.playerMovement2.includes(Number(body.move))
 		) {
-			res.status(400).json({
+			return res.status(400).json({
 				ok: false,
 				message: 'movimiento no permitido',
 			});
 		}
 
-		Game.findByIdAndUpdate(
+		return Game.findByIdAndUpdate(
 			id,
 			objectUpdate,
 			{ safe: true, upsert: true, new: true },
 			(error, gameDataBase) => {
 				if (err) {
-					res.status(500).json({
+					return res.status(500).json({
 						ok: false,
 						error,
 					});
 				}
 
-				res.status(200).json({
+				const movement =					Number(body.turn) === 1
+					? gameDataBase.playerMovement1
+					: gameDataBase.playerMovement2;
+
+				if (movement.length > 2) {
+					winner = verifyWinner(movement);
+				}
+
+				return res.status(200).json({
 					ok: true,
 					gameDataBase,
+					winner,
 				});
 			},
 		);
