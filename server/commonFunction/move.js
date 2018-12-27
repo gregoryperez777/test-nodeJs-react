@@ -1,4 +1,4 @@
-const verifyWinner = (movement) => {
+const verifyWinner = (turn, movement, countMovement) => {
 	const winningPlays = [
 		[1, 2, 3],
 		[4, 5, 6],
@@ -7,7 +7,7 @@ const verifyWinner = (movement) => {
 		[2, 5, 8],
 		[3, 6, 9],
 		[1, 5, 7],
-		[3, 5, 7],
+		[3, 5, 7]
 	];
 
 	let i = 0;
@@ -22,7 +22,11 @@ const verifyWinner = (movement) => {
 		i += 1;
 	}
 
-	return band;
+	if (!band && countMovement === 9) {
+		return "draw";
+	}
+
+	return turn;
 };
 
 module.exports = verifyWinner;
