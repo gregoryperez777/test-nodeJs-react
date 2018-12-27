@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
 const User = require('../models/users');
+const Record = require('../models/record');
 
 const app = express();
 
@@ -21,6 +22,12 @@ app.post('/user', (req, res) => {
 				err,
 			});
 		}
+
+		const record = new Record({
+			user: userDB,
+		});
+
+		record.save();
 
 		return res.status(200).json({
 			ok: true,
