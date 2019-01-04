@@ -23,9 +23,9 @@ mongoose.connect(
 	{ useNewUrlParser: true },
 	(err, res) => {
 		if (err) throw err;
-		return res;
 		// console.log('BD online', res.db.s.databaseName);
-	},
+		return res;
+	}
 );
 
 app.listen(process.env.PORT, () => {

@@ -1,9 +1,10 @@
 const express = require('express');
 const Record = require('../models/record');
+const verifyToken = require('../middleware/authentication');
 
 const app = express();
 
-app.get('/record/:id', (req, res) => {
+app.get('/record/:id', verifyToken, (req, res) => {
 	const { id } = req.params;
 
 	Record.findOne({ user: id }).exec((err, recordDB) => {

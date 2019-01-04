@@ -15,6 +15,10 @@ const recordSchema = new Schema({
 		type: Number,
 		default: 0,
 	},
+	gameLoser: {
+		type: Number,
+		default: 0,
+	},
 	user: {
 		type: Schema.Types.ObjectId,
 		ref: 'User',

@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
 
 const { Schema } = mongoose;
 
 const gameSchema = Schema({
+	finish: {
+		type: Boolean,
+		default: false,
+	},
 	creationDate: {
 		type: Date,
 		default: Date.now,
@@ -20,11 +23,14 @@ const gameSchema = Schema({
 		type: [Number],
 		default: [],
 	},
+	winner: {
+		type: Number,
+		default: -1,
+	},
 	user: {
 		type: Schema.Types.ObjectId,
 		ref: 'User',
 	},
 });
 
-gameSchema.plugin(uniqueValidator, { message: '{PATH} debe de ser único' });
 module.exports = mongoose.model('Game', gameSchema);

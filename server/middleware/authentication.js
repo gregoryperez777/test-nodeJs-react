@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const verificaToken = (req, res, next) => {
+const verifyToken = (req, res, next) => {
 	const token = req.get('token');
 
 	jwt.verify(token, process.env.SEED, (err, decode) => {
@@ -8,16 +8,16 @@ const verificaToken = (req, res, next) => {
 			return res.status(401).json({
 				ok: false,
 				err: {
-					message: 'token no ',
+					message: 'token no',
 				},
 			});
 		}
 
 		// decode es el payload enviado en el token
 
-		req.usuario = decode.usuario;
+		req.user = decode.user;
 		return next();
 	});
 };
 
-module.exports = verificaToken;
+module.exports = verifyToken;
