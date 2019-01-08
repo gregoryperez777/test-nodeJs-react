@@ -4,11 +4,11 @@
 
 .board-rigth-bottom {
 	border-right: 5px solid black !important;
-	border-bottom: 5px solid black;
+	border-bottom: 5px solid black !important;
 }
 
 .board-bottom {
-	border-bottom: 5px solid black;
+	border-bottom: 5px solid black !important;
 }
 
 .board-rigth {
