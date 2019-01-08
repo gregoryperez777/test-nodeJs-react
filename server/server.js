@@ -6,14 +6,16 @@ const path = require('path');
 
 const app = express();
 
+// parse application/json
+// Este middleware convierte la data enviada con stringify a un json
+// y es usado si la data es enviada con application/json
+app.use(bodyParser.json());
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // EndPoint
 app.use(require('./routes/index'));
-
-// parse application/json
-app.use(bodyParser.json());
 
 // habilitar carpeta public
 app.use(express.static(path.resolve(__dirname, '../public')));

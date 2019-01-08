@@ -37,3 +37,14 @@
 	align-items: center;
 	height: 90vh;
 }
+
+.border-login {
+	border: 2px solid;
+	border-radius: 0.5em;
+	padding: 5%;
+}
+
+.not-margin-row {
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+}
