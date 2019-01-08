@@ -1,0 +1,16 @@
+.square {
+	height: 30vh;
+}
+
+.board-rigth-bottom {
+	border-right: 5px solid black !important;
+	border-bottom: 5px solid black;
+}
+
+.board-bottom {
+	border-bottom: 5px solid black;
+}
+
+.board-rigth {
+	border-right: 5px solid black !important;
+}
