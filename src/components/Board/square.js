@@ -1,45 +1,28 @@
 import React from 'react';
-import { Container, Col, Row } from 'reactstrap';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Col } from 'reactstrap';
 import './Board.css';
 
-const Square = () => (
-	<Container>
-		<Row>
-			<Col xs={4} sm={4} md={4} lg={4} xl={4} className='square board-rigth-bottom'>
-				hola
-			</Col>
-			<Col xs={4} sm={4} md={4} lg={4} xl={4} className='square board-rigth-bottom'>
-				hola
-			</Col>
-			<Col xs={4} sm={4} md={4} lg={4} xl={4} className='square board-bottom'>
-				hola
-			</Col>
-		</Row>
-
-		<Row>
-			<Col xs={4} sm={4} md={4} lg={4} xl={4} className='square board-rigth-bottom'>
-				hola
-			</Col>
-			<Col xs={4} sm={4} md={4} lg={4} xl={4} className='square board-rigth-bottom'>
-				hola
-			</Col>
-			<Col xs={4} sm={4} md={4} lg={4} xl={4} className='square board-bottom'>
-				hola
-			</Col>
-		</Row>
-
-		<Row>
-			<Col xs={4} sm={4} md={4} lg={4} xl={4} className='square board-rigth'>
-				hola
-			</Col>
-			<Col xs={4} sm={4} md={4} lg={4} xl={4} className='square board-rigth'>
-				hola
-			</Col>
-			<Col xs={4} sm={4} md={4} lg={4} xl={4} className='square'>
-				hola
-			</Col>
-		</Row>
-	</Container>
+const Square = ({ styleLine }) => (
+	<Col xs={4} sm={4} md={4} lg={4} xl={4} className={`square ${styleLine}`}>
+		hola
+	</Col>
 );
 
-export default Square;
+Square.defaultProps = {
+	styleLine: '',
+};
+
+Square.propTypes = {
+	styleLine: PropTypes.string,
+};
+
+const mapStateToProps = (state, ownProps) => ({
+	styleLine: ownProps.styleLine,
+});
+
+export default connect(
+	mapStateToProps,
+	null
+)(Square);

@@ -2,24 +2,23 @@ import React from 'react';
 import { Container, Row } from 'reactstrap';
 import Square from './square';
 
-
 const Board = () => (
 	<Container>
 		<Row>
-			<Square />
-			<Square />
-			<Square />
+			<Square styleLine='board-rigth-bottom' />
+			<Square styleLine='board-rigth-bottom' />
+			<Square styleLine='board-bottom' />
 		</Row>
 
 		<Row>
-			<Square />
-			<Square />
-			<Square />
+			<Square styleLine='board-rigth-bottom' />
+			<Square styleLine='board-rigth-bottom' />
+			<Square styleLine='board-bottom' />
 		</Row>
 
 		<Row>
-			<Square />
-			<Square />
+			<Square styleLine='board-rigth' />
+			<Square styleLine='board-rigth' />
 			<Square />
 		</Row>
 	</Container>

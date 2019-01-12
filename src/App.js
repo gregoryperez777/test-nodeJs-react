@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import IdleTimer from 'react-idle-timer';
 import { logout } from './actions/actionsLogin';
 import Login from './components/Login';
-// import Board from './components/Board/board';
-import Square from './components/Board/square';
+import Board from './components/Board/board';
+// import Square from './components/Board/square';
 import './App.css';
 
 const App = ({ auth, actionLogout }) => (
@@ -14,7 +14,7 @@ const App = ({ auth, actionLogout }) => (
 
 		{auth && (
 			<IdleTimer element={document} onIdle={() => actionLogout()} timeout={1000 * 60 * 15}>
-				<Square />
+				<Board />
 			</IdleTimer>
 		)}
 	</div>
