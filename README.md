@@ -3,6 +3,7 @@
 ## Tic-tac-toe with NodeJs and React.js
 ## Requisitos:
 - NodeJs v10.14.1 or higher
+- MongoDB version v3.2.22
 ## Installation
 1. Open the terminal and execute: `git clone https://github.com/gregoryperez777/test-nodejs-react.git`  to download the project.
 2. Execute the command: `cd test-nodejs-react` to enter the project directory.
