@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Container, Row } from 'reactstrap';
 import getValue from '../../services/commonFunction';
+
 import Square from './square';
 
 const Board = ({ plays }) => (

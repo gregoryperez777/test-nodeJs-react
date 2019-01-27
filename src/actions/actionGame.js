@@ -10,7 +10,7 @@ export const executePlay = (turn, id) => ({
 });
 
 export const play = (turn, id) => (dispatch) => {
-	const query = '/game';
+	const query = '/game/5c4de05dfa8cce306db60aae';
 	const data = {
 		turn,
 		move: id,
