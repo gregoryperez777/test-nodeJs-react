@@ -71,7 +71,11 @@ app.get('/games', verifyToken, (req, res) => {
 app.put('/game/:id', [verifyToken, verifyMovement], (req, res) => {
 	const { id } = req.params;
 	const body = _.pick(req.body, ['turn', 'move']);
-	let winner = false;
+	let result = {
+		isWinner: false,
+		winner: -1,
+		winningRoute: [],
+	};
 
 	const objectUpdate =
 		Number(body.turn) === 1
@@ -98,12 +102,13 @@ app.put('/game/:id', [verifyToken, verifyMovement], (req, res) => {
 			const countMovement = newGame.playerMovement1.length + newGame.playerMovement2.length;
 
 			if (movement.length > 2) {
-				winner = verifyWinner(body.turn, movement, countMovement);
+				result = verifyWinner(body.turn, movement, countMovement);
+				console.log('result', result);
 			}
 
-			if (winner || winner === 'DRAW') {
+			if (result.isWinner || result.isWinner === 'DRAW') {
 				newGame.finish = true;
-				newGame.winner = winner === 'DRAW' ? 0 : winner;
+				newGame.winner = result.winner;
 				newGame.save();
 
 				Record.findOne({ user: req.user._id }).exec((error, recordUserDB) => {
@@ -135,6 +140,7 @@ app.put('/game/:id', [verifyToken, verifyMovement], (req, res) => {
 			return res.status(200).json({
 				ok: true,
 				newGame,
+				winningRoute: result.winningRoute,
 			});
 		}
 	);

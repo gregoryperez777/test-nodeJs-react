@@ -3,6 +3,7 @@ import { EXECUTE_PLAY } from '../actions/actionGame';
 const initialState = {
 	turn: 1,
 	plays: [],
+	winningRoute: [],
 };
 
 const ReducerGame = (state = initialState, action = {}) => {
@@ -12,8 +13,8 @@ const ReducerGame = (state = initialState, action = {}) => {
 				...state,
 				turn: action.payload.turn,
 				plays: [...state.plays, action.payload.played],
+				winningRoute: action.payload.winningRoute,
 			};
-
 		default:
 			return state;
 	}

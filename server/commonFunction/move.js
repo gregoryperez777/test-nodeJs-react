@@ -6,7 +6,7 @@ const verifyWinner = (turn, movement, countMovement) => {
 		[1, 4, 7],
 		[2, 5, 8],
 		[3, 6, 9],
-		[1, 5, 7],
+		[1, 5, 9],
 		[3, 5, 7],
 	];
 
@@ -15,6 +15,7 @@ const verifyWinner = (turn, movement, countMovement) => {
 
 	while (i < 8 && !band) {
 		const [a, b, c] = winningPlays[i];
+		console.log('row', [a, b, c]);
 
 		if (movement.includes(a) && movement.includes(b) && movement.includes(c)) {
 			band = true;
@@ -23,10 +24,18 @@ const verifyWinner = (turn, movement, countMovement) => {
 	}
 
 	if (band) {
-		return turn;
+		return {
+			isWinner: band,
+			winner: turn,
+			winningRoute: winningPlays[i - 1],
+		};
 	}
 	if (countMovement === 9) {
-		return 'DRAW';
+		return {
+			isWinner: 'DRAW',
+			winner: 0,
+			winningRoute: [],
+		};
 	}
 
 	return band;

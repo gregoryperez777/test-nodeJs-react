@@ -6,7 +6,7 @@ import { play } from '../../actions/actionGame';
 import './Board.css';
 
 const Square = ({
-	id, turn, styleLine, valueTurn, actionPlay
+	id, turn, styleLine, valueTurn, actionPlay, isThreeOnline
 }) => (
 	<Col
 		xs={4}
@@ -14,7 +14,7 @@ const Square = ({
 		md={4}
 		lg={4}
 		xl={4}
-		className={`square ${styleLine}`}
+		className={`square ${styleLine} ${isThreeOnline ? 'hola' : 'chao'}`}
 		onClick={() => actionPlay(turn, id)}
 	>
 		{valueTurn}
@@ -24,6 +24,7 @@ const Square = ({
 Square.defaultProps = {
 	styleLine: '',
 	valueTurn: '',
+	isThreeOnline: false,
 };
 
 Square.propTypes = {
@@ -32,6 +33,7 @@ Square.propTypes = {
 	valueTurn: PropTypes.string,
 	actionPlay: PropTypes.func.isRequired,
 	styleLine: PropTypes.string,
+	isThreeOnline: PropTypes.bool,
 };
 
 const mapStateToProps = (state, ownProps) => ({
@@ -39,6 +41,7 @@ const mapStateToProps = (state, ownProps) => ({
 	turn: state.ReducerGame.turn,
 	valueTurn: ownProps.valueTurn,
 	styleLine: ownProps.styleLine,
+	isThreeOnline: ownProps.isThreeOnline,
 });
 
 const mapDispatchToProps = dispatch => ({

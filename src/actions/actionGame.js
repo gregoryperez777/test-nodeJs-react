@@ -1,16 +1,17 @@
 export const EXECUTE_PLAY = 'EXECUTE_PLAY';
 
-export const executePlay = (turn, id) => ({
+export const executePlay = (infoPlay, turn, id) => ({
 	type: EXECUTE_PLAY,
 	payload: {
 		type: EXECUTE_PLAY,
-		turn: turn === 1 ? 2 : 1,
+		turn: infoPlay.newGame.turn,
 		played: { turn, move: id },
+		winningRoute: infoPlay.newGame.winner ? infoPlay.winningRoute : [],
 	},
 });
 
 export const play = (turn, id) => (dispatch) => {
-	const query = '/game/5c4de05dfa8cce306db60aae';
+	const query = '/game/5c7c54eb57bd93286c33a7ee';
 	const data = {
 		turn,
 		move: id,
@@ -29,7 +30,7 @@ export const play = (turn, id) => (dispatch) => {
 		.then(response => response.json())
 		.then((response) => {
 			if (response.ok) {
-				dispatch(executePlay(turn, id));
+				dispatch(executePlay(response, turn, id));
 			}
 		})
 		.catch(e => e);

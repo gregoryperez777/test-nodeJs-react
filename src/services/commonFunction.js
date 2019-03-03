@@ -14,8 +14,14 @@ const getValue = (id, plays) => {
 	if (band && plays[position]) {
 		return plays[position].turn === 1 ? 'X' : '0';
 	}
-
 	return '';
 };
 
-export default getValue;
+const verifyThreeOnline = (id, winningRoute) => {
+	if (winningRoute !== undefined && winningRoute.length === 3 && winningRoute.includes(id)) {
+		return true;
+	}
+	return false;
+};
+
+export { getValue, verifyThreeOnline };
